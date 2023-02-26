@@ -34,17 +34,16 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
+GIF created with LICEcap
 
 ## Notes
 
 Describe any challenges encountered while building the app.
 
+- Phone size was changed in the design GUI and I could not debug why my information was not showing.
+- ConstraintLayout was difficult to work with, including the previous problem. I had to redo each element in pieces.
+- Game flow logic was out of order, and off by one when decrementing guesses.
+- 
 ## License
 
     Copyright [2023] [Melissa Perez]
