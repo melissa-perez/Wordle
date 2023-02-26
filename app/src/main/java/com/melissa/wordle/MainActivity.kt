@@ -1,34 +1,62 @@
 package com.melissa.wordle
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.melissa.wordle.FourLetterWordList
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    private val NUMBER_OF_GUESSES = 3
+    private var numberOfGuesses: Int = 3
     private var wordToGuess: String = FourLetterWordList.getRandomFourLetterWord()
+    private val correctWordTextView: TextView = findViewById(R.id.correctWordTextView)
+    private val currentGuess: EditText = findViewById(R.id.guessEditText)
+    private val guessBtn: Button = findViewById(R.id.guessEnterButton)
+    private val guess1 : TextView = findViewById(R.id.guessOneText)
+    private val guess1Check: TextView = findViewById(R.id.guessOneCheckText)
+    private val guess2: TextView = findViewById(R.id.guessTwoText)
+    private val guess2Check: TextView = findViewById(R.id.guessTwoCheckText)
+    private val guess3: TextView = findViewById(R.id.guessThreeText)
+    private val guess3Check: TextView = findViewById(R.id.guessThreeCheckText)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val guessTextField = findViewById<EditText>(R.id.guessEditText)
+        // 1. get the correct word TV and set it to selected word
+        correctWordTextView.text = wordToGuess
+        Log.v("word", wordToGuess)
 
-        //Log.v("debug", wordToGuess)
-
-        //val screenView = findViewById<TextView>(R.id.wordView)
-        //screenView.text = FourLetterWordList.getRandomFourLetterWord()
-        findViewById<Button>(R.id.guessEnterButton).setOnClickListener{
-            val userGuessEntered = guessTextField.text.toString()
+        // 2. wait for user to guess with guess button click listener
+        guessBtn.setOnClickListener{
+            val userGuessEntered = currentGuess.text.toString()
             Log.v("guess", userGuessEntered)
-            guessTextField.setText("")
+            currentGuess.setText("")
 
-            if (NUMBER_OF_GUESSES > 0) {
-                checkGuess(userGuessEntered)
+            // 1. Check if we have enough guesses to process first
+            if (numberOfGuesses > 0) {
+                numberOfGuesses--
+                Toast.makeText(it.context, "Guesses remaining: $numberOfGuesses", Toast.LENGTH_SHORT).show()
+                if (numberOfGuesses == 2) {
+                    guess1.text = guess1.text.toString().plus(userGuessEntered)
+                    guess1Check.text = guess1Check.text.toString().plus(checkGuess(userGuessEntered))
+                }
+                else if (numberOfGuesses == 1) {
+                    guess2.text = guess2.text.toString().plus(userGuessEntered)
+                    guess2Check.text = guess2Check.text.toString().plus(checkGuess(userGuessEntered))
+                }
+                else {
+                    guess3.text = guess3.text.toString().plus(userGuessEntered)
+                    guess3Check.text = guess3Check.text.toString().plus(checkGuess(userGuessEntered))
+                }
+            }
+            else {
+                correctWordTextView.visibility = VISIBLE
+                guessBtn.isEnabled = false
+                Toast.makeText(it.context, "Out of guesses!", Toast.LENGTH_SHORT).show()
             }
         }
     }
