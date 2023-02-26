@@ -2,19 +2,35 @@ package com.melissa.wordle
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import com.melissa.wordle.FourLetterWordList
 
 class MainActivity : AppCompatActivity() {
     private val NUMBER_OF_GUESSES = 3
-    private var wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+    private var wordToGuess: String = FourLetterWordList.getRandomFourLetterWord()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val guessTextField = findViewById<EditText>(R.id.guessEditText)
+
+        //Log.v("debug", wordToGuess)
+
         //val screenView = findViewById<TextView>(R.id.wordView)
         //screenView.text = FourLetterWordList.getRandomFourLetterWord()
+        findViewById<Button>(R.id.guessEnterButton).setOnClickListener{
+            val userGuessEntered = guessTextField.text.toString()
+            Log.v("guess", userGuessEntered)
+            guessTextField.setText("")
+
+            if (NUMBER_OF_GUESSES > 0) {
+                checkGuess(userGuessEntered)
+            }
+        }
     }
 
     /**
