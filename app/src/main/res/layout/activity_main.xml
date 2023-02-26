@@ -40,96 +40,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/guessOneText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/guessOneText"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guessOneCheckText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/guessOneCheckText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/guessOneCheckText"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guessTwoText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessOneText" />
 
-    <TextView
-        android:id="@+id/guessTwoText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/guessTwoText"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guessTwoCheckText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessOneCheckText" />
 
-    <TextView
-        android:id="@+id/guessTwoCheckText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/guessTwoCheckText"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guessThreeText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessTwoText" />
-
-    <TextView
-        android:id="@+id/guessThreeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="@string/guessThreeText"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guessThreeCheckText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessTwoCheckText" />
-
-    <TextView
-        android:id="@+id/guessThreeCheckText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="548dp"
-        android:text="@string/guessThreeCheckText"
-        android:textSize="20sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/correctWordTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessThreeText" />
 
     <TextView
         android:id="@+id/correctWordTextView"
@@ -138,12 +51,32 @@
         android:layout_marginTop="362dp"
         android:textSize="20sp"
         android:visibility="invisible"
+        android:textAlignment="center"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.806" />
+
+    <TextView
+        android:id="@+id/guessOne"
+        android:layout_width="344dp"
+        android:layout_height="191dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="329dp"
+        android:layout_marginBottom="789dp"
+
+        android:text="TextView"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/guessEditText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
