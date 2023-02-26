@@ -38,6 +38,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="837dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/resetButtonText"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/correctWord"
         android:layout_width="wrap_content"
@@ -58,18 +75,17 @@
         android:id="@+id/firstGuess"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
         android:layout_marginBottom="8dp"
         android:text="@string/guessOneText"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/firstGuessCheck"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/streakCounter"
+        app:layout_constraintBottom_toTopOf="@+id/firstGuessCheck" />
 
     <TextView
         android:id="@+id/firstGuessCheck"
@@ -81,11 +97,12 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/secondGuess"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstGuess" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstGuess"
+        app:layout_constraintBottom_toTopOf="@+id/secondGuess"
+        />
 
     <TextView
         android:id="@+id/secondGuess"
@@ -97,11 +114,11 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/secondGuessCheck"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstGuessCheck" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstGuessCheck"
+        app:layout_constraintBottom_toTopOf="@+id/secondGuessCheck" />
 
     <TextView
         android:id="@+id/secondGuessCheck"
@@ -149,5 +166,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/thirdGuess" />
 
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/streakCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/streakText"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/firstGuess"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

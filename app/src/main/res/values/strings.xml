@@ -8,4 +8,6 @@
     <string name="guessTwoCheckText">Guess #2 Check</string>
     <string name="guessThreeText">Guess #3</string>
     <string name="guessThreeCheckText">Guess #3 Check</string>
+    <string name="resetButtonText">Reset</string>
+    <string name="streakText">Streak: 0</string>
 </resources>
