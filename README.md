@@ -21,12 +21,12 @@ The following **optional** features are implemented:
 - [ ] User can see the 'correctness' of their guess through colors on the word
 - [*] User sees a visual change after guessing the correct word
 - [*] User can tap a 'Reset' button to get a new word and clear previous guesses
-- [ ] User will get an error message if they input an invalid guess
+- [*] User will get an error message if they input an invalid guess
 - [*] User can see a 'streak' record of how many words they've guessed correctly.
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+ - [*] Capitalized output to screen to standardize input.
 
 ## Video Walkthrough
 

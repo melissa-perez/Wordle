@@ -1,10 +1,14 @@
 package com.melissa.wordle
 
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Layout
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.SpannableStringBuilder
 import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+import android.text.style.ForegroundColorSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -14,6 +18,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.color
 import nl.dionsegijn.konfetti.xml.KonfettiView
 
 class MainActivity : AppCompatActivity() {
@@ -67,45 +72,24 @@ class MainActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 if (numberOfGuesses == 3) {
-                    guess1.text = guess1.text.toString().plus(userGuessEntered)
-                    guess1Check.text =
-                        guess1Check.text.toString().plus(checkGuess(userGuessEntered))
-
-                    /* guessOneSpan = SpannableString(
-                         guess1.text.toString().plus(userGuessEntered)
-                     )
-                     guessOneSpan.setSpan(
-                         Layout.Alignment.ALIGN_NORMAL,
-                         0,
-                         resources.getString(R.string.guessOneText).length - 1,
-                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-
-                     )
-                     guessOneSpan.setSpan(
-                         Layout.Alignment.ALIGN_OPPOSITE,
-                         resources.getString(R.string.guessOneText).length,
-                         guess1.text.length,
-                         Spannable.SPAN_EXCLUSIVE_INCLUSIVE
-
-                     )*/
+                    guess1.text = guess1.text.toString().plus(userGuessEntered).uppercase()
+                    guess1Check.text = checkGuess(userGuessEntered)
                     guess1Label.visibility = VISIBLE
                     guess1.visibility = VISIBLE
                     guess1CheckLabel.visibility = VISIBLE
                     guess1Check.visibility = VISIBLE
 
                 } else if (numberOfGuesses == 2) {
-                    guess2.text = guess2.text.toString().plus(userGuessEntered)
-                    guess2Check.text =
-                        guess2Check.text.toString().plus(checkGuess(userGuessEntered))
+                    guess2.text = guess2.text.toString().plus(userGuessEntered).uppercase()
+                    guess2Check.text = checkGuess(userGuessEntered)
 
                     guess2Label.visibility = VISIBLE
                     guess2.visibility = VISIBLE
                     guess2CheckLabel.visibility = VISIBLE
                     guess2Check.visibility = VISIBLE
                 } else {
-                    guess3.text = guess3.text.toString().plus(userGuessEntered)
-                    guess3Check.text =
-                        guess3Check.text.toString().plus(checkGuess(userGuessEntered))
+                    guess3.text = guess3.text.toString().plus(userGuessEntered).uppercase()
+                    guess3Check.text = checkGuess(userGuessEntered)
                     guess3Label.visibility = VISIBLE
                     guess3.visibility = VISIBLE
                     guess3CheckLabel.visibility = VISIBLE
@@ -177,25 +161,25 @@ class MainActivity : AppCompatActivity() {
      *   wordToGuess : String - the target word the user is trying to guess
      *   guess : String - what the user entered as their guess
      *
-     * Returns a String of 'O', '+', and 'X', where:
-     *   'O' represents the right letter in the right place
-     *   '+' represents the right letter in the wrong place
-     *   'X' represents a letter not in the target word
+     * Returns a SpannableStringBuilder of the original guess, where:
+     *   green font represents the right letter in the right place
+     *   red font represents the right letter in the wrong place
+     *   gray font represents a letter not in the target word
      */
-    private fun checkGuess(guess: String): String {
-        Log.v("checkGuess", guess)
-        Log.v("checkGuess", wordToGuess)
-        var result = ""
+    private fun checkGuess(guess: String): SpannableStringBuilder {
+        val sBuilder = SpannableStringBuilder()
         for (i in 0..3) {
-            if (guess[i].uppercaseChar() == wordToGuess[i]) {
-                result += "O"
+            var guessUpper = guess[i].uppercaseChar()
+            if ( guessUpper == wordToGuess[i]) {
+                sBuilder.color(getColor((R.color.green_500)), { append(guessUpper)})
             } else if (guess[i].uppercaseChar() in wordToGuess) {
-                result += "+"
-            } else {
-                result += "X"
+                sBuilder.color(getColor((R.color.red_500)), { append(guessUpper)})
+            }
+            else{
+                sBuilder.append(guessUpper)
             }
         }
-        return result
+        return sBuilder
     }
 
     /**
