@@ -17,7 +17,7 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] User can toggle between different word lists
+- [*] User can toggle between different word lists
 - [*] User can see the 'correctness' of their guess through colors on the word
 - [*] User sees a visual change after guessing the correct word
 - [*] User can tap a 'Reset' button to get a new word and clear previous guesses
@@ -44,7 +44,7 @@ Describe any challenges encountered while building the app.
 - Phone size was changed in the design GUI and I could not debug why my information was not showing.
 - ConstraintLayout was difficult to work with, including the previous problem. I had to redo each element in pieces.
 - Game flow logic was out of order, and off by one when decrementing guesses.
-- 
+- Had to trial and error StringBuilder color and modify checkGuess().
 ## License
 
     Copyright [2023] [Melissa Perez]

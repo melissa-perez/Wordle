@@ -11,4 +11,5 @@
     <string name="resetButtonText">Reset</string>
     <string name="streakText">Streak: </string>
     <string name="initialCounter">0</string>
+    <string name="themeButtonText">Kids</string>
 </resources>

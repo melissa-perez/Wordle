@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         val currentGuess: EditText = findViewById(R.id.guessField)
         val guessBtn: Button = findViewById(R.id.guessButton)
         val resetBtn: Button = findViewById(R.id.resetButton)
+        val themeBtn: Button = findViewById(R.id.themeButton)
         val guess1Label: TextView = findViewById(R.id.firstGuessLabel)
         val guess1: TextView = findViewById(R.id.firstGuess)
         val guess1CheckLabel: TextView = findViewById(R.id.firstGuessCheckLabel)
@@ -105,7 +106,55 @@ class MainActivity : AppCompatActivity() {
             currentGuess.onEditorAction(EditorInfo.IME_ACTION_DONE)
         }
         resetBtn.setOnClickListener {
-            wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+            if (themeBtn.text == "Adults") {
+                wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+            }
+            else {
+                wordToGuess = FourLetterWordList.getRandomKidsFourLetterWord()
+            }
+            numberOfGuesses = 3
+            correctWord.visibility = INVISIBLE
+            correctWord.text = wordToGuess
+            Log.v("correct", wordToGuess)
+
+            guess1Label.visibility = INVISIBLE
+            guess1.visibility = INVISIBLE
+            guess1.text = ""
+
+            guess2Label.visibility = INVISIBLE
+            guess2.visibility = INVISIBLE
+            guess2.text = ""
+
+            guess3Label.visibility = INVISIBLE
+            guess3.visibility = INVISIBLE
+            guess3.text = ""
+
+            guess1CheckLabel.visibility = INVISIBLE
+            guess1Check.visibility = INVISIBLE
+            guess1Check.text = ""
+
+            guess2CheckLabel.visibility = INVISIBLE
+            guess2Check.visibility = INVISIBLE
+            guess2Check.text = ""
+
+            guess3CheckLabel.visibility = INVISIBLE
+            guess3Check.visibility = INVISIBLE
+            guess3Check.text = ""
+
+            guessBtn.visibility = VISIBLE
+            resetBtn.visibility = INVISIBLE
+        }
+        themeBtn.setOnClickListener {
+            if (themeBtn.text == "Adults") {
+                themeBtn.text = resources.getText(R.string.themeButtonText)
+            }
+            else {
+                themeBtn.text = "Adults"
+            }
+            // basically reset but also change the random word
+            wordToGuess = FourLetterWordList.getRandomKidsFourLetterWord()
+            Log.v("correct", wordToGuess)
+
             numberOfGuesses = 3
             correctWord.visibility = INVISIBLE
             correctWord.text = wordToGuess
