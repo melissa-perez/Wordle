@@ -1,14 +1,7 @@
 package com.melissa.wordle
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Layout
-import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
-import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -56,11 +49,6 @@ class MainActivity : AppCompatActivity() {
         // Wait for user to guess with guess button click listener
         guessBtn.setOnClickListener {
             val userGuessEntered = currentGuess.text.toString()
-            // val guessOneSpan: SpannableString
-            // val guessOneCheckSpan: SpannableString
-            // var guessTwoCheckSpan: SpannableString = SpannableString(guess2Check.text)
-            // var guessThreeCheckSpan: SpannableString = SpannableString(guess3Check.text)
-
             // Check if we have enough guesses to process
             if (numberOfGuesses > 0) {
                 if (userGuessEntered.length != 4 || !isOnlyLetters(userGuessEntered)) {
@@ -102,10 +90,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(it.context, "Out of guesses!", Toast.LENGTH_SHORT).show()
                     if (userGuessEntered.uppercase() == wordToGuess.uppercase()) {
                         viewKonfetti.start(Presets.parade())
-                        streak.text = streak.text.replaceRange(
-                            streak.text.length - 1,
-                            streak.text.length, ((streak.text.last() + 1).toString())
-                        )
+                        streak.text = streak.text.toString().toInt().plus(1).toString()
                     }
                 }
             } else {
@@ -155,7 +140,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * Parameters / Fields:
      *   wordToGuess : String - the target word the user is trying to guess
@@ -170,12 +154,11 @@ class MainActivity : AppCompatActivity() {
         val sBuilder = SpannableStringBuilder()
         for (i in 0..3) {
             var guessUpper = guess[i].uppercaseChar()
-            if ( guessUpper == wordToGuess[i]) {
-                sBuilder.color(getColor((R.color.green_500)), { append(guessUpper)})
-            } else if (guess[i].uppercaseChar() in wordToGuess) {
-                sBuilder.color(getColor((R.color.red_500)), { append(guessUpper)})
-            }
-            else{
+            if (guessUpper == wordToGuess[i]) {
+                sBuilder.color(getColor((R.color.green_500))) { append(guessUpper) }
+            } else if (guessUpper in wordToGuess) {
+                sBuilder.color(getColor((R.color.red_500))) { append(guessUpper) }
+            } else {
                 sBuilder.append(guessUpper)
             }
         }
