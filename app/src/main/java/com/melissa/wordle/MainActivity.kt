@@ -1,6 +1,10 @@
 package com.melissa.wordle
 
 import android.os.Bundle
+import android.text.Layout
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
 import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -41,9 +45,14 @@ class MainActivity : AppCompatActivity() {
         // Wait for user to guess with guess button click listener
         guessBtn.setOnClickListener {
             val userGuessEntered = currentGuess.text.toString()
+            val guessOneSpan: SpannableString
+            val guessOneCheckSpan: SpannableString
+            var guessTwoCheckSpan: SpannableString = SpannableString(guess2Check.text)
+            var guessThreeCheckSpan: SpannableString = SpannableString(guess3Check.text)
+
             // Check if we have enough guesses to process
             if (numberOfGuesses > 0) {
-                if(userGuessEntered.length != 4 || !isOnlyLetters(userGuessEntered)) {
+                if (userGuessEntered.length != 4 || !isOnlyLetters(userGuessEntered)) {
                     Toast.makeText(
                         it.context,
                         "Incorrect input. 4 letters and [Aa-Zz] only.",
@@ -55,8 +64,27 @@ class MainActivity : AppCompatActivity() {
                     guess1.text = guess1.text.toString().plus(userGuessEntered)
                     guess1Check.text =
                         guess1Check.text.toString().plus(checkGuess(userGuessEntered))
+
+                    guessOneSpan = SpannableString(
+                        guess1.text.toString().plus(userGuessEntered)
+                    )
+                    guessOneSpan.setSpan(
+                        Layout.Alignment.ALIGN_NORMAL,
+                        0,
+                        resources.getString(R.string.guessOneText).length - 1,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+
+                    )
+                    guessOneSpan.setSpan(
+                        Layout.Alignment.ALIGN_OPPOSITE,
+                        resources.getString(R.string.guessOneText).length,
+                        guess1.text.length,
+                        Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+
+                    )
                     guess1.visibility = VISIBLE
                     guess1Check.visibility = VISIBLE
+
                 } else if (numberOfGuesses == 2) {
                     guess2.text = guess2.text.toString().plus(userGuessEntered)
                     guess2Check.text =
@@ -76,8 +104,10 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(it.context, "Out of guesses!", Toast.LENGTH_SHORT).show()
                     if (userGuessEntered.uppercase() == wordToGuess.uppercase()) {
                         viewKonfetti.start(Presets.parade())
-                        streak.text = streak.text.replaceRange(streak.text.length - 1,
-                                streak.text.length, ((streak.text.last() + 1).toString()))
+                        streak.text = streak.text.replaceRange(
+                            streak.text.length - 1,
+                            streak.text.length, ((streak.text.last() + 1).toString())
+                        )
                     }
                 }
             } else {
