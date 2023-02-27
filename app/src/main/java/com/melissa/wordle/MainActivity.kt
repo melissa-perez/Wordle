@@ -30,11 +30,17 @@ class MainActivity : AppCompatActivity() {
         val currentGuess: EditText = findViewById(R.id.guessField)
         val guessBtn: Button = findViewById(R.id.guessButton)
         val resetBtn: Button = findViewById(R.id.resetButton)
+        val guess1Label: TextView = findViewById(R.id.firstGuessLabel)
         val guess1: TextView = findViewById(R.id.firstGuess)
+        val guess1CheckLabel: TextView = findViewById(R.id.firstGuessCheckLabel)
         val guess1Check: TextView = findViewById(R.id.firstGuessCheck)
+        val guess2Label: TextView = findViewById(R.id.secondGuessLabel)
         val guess2: TextView = findViewById(R.id.secondGuess)
+        val guess2CheckLabel: TextView = findViewById(R.id.secondGuessCheckLabel)
         val guess2Check: TextView = findViewById(R.id.secondGuessCheck)
+        val guess3Label: TextView = findViewById(R.id.thirdGuessLabel)
         val guess3: TextView = findViewById(R.id.thirdGuess)
+        val guess3CheckLabel: TextView = findViewById(R.id.thirdGuessCheckLabel)
         val guess3Check: TextView = findViewById(R.id.thirdGuessCheck)
         val streak: TextView = findViewById(R.id.streakCounter)
         viewKonfetti = findViewById(R.id.konfettiView)
@@ -45,10 +51,10 @@ class MainActivity : AppCompatActivity() {
         // Wait for user to guess with guess button click listener
         guessBtn.setOnClickListener {
             val userGuessEntered = currentGuess.text.toString()
-           // val guessOneSpan: SpannableString
-           // val guessOneCheckSpan: SpannableString
-           // var guessTwoCheckSpan: SpannableString = SpannableString(guess2Check.text)
-           // var guessThreeCheckSpan: SpannableString = SpannableString(guess3Check.text)
+            // val guessOneSpan: SpannableString
+            // val guessOneCheckSpan: SpannableString
+            // var guessTwoCheckSpan: SpannableString = SpannableString(guess2Check.text)
+            // var guessThreeCheckSpan: SpannableString = SpannableString(guess3Check.text)
 
             // Check if we have enough guesses to process
             if (numberOfGuesses > 0) {
@@ -65,38 +71,46 @@ class MainActivity : AppCompatActivity() {
                     guess1Check.text =
                         guess1Check.text.toString().plus(checkGuess(userGuessEntered))
 
-                   /* guessOneSpan = SpannableString(
-                        guess1.text.toString().plus(userGuessEntered)
-                    )
-                    guessOneSpan.setSpan(
-                        Layout.Alignment.ALIGN_NORMAL,
-                        0,
-                        resources.getString(R.string.guessOneText).length - 1,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    /* guessOneSpan = SpannableString(
+                         guess1.text.toString().plus(userGuessEntered)
+                     )
+                     guessOneSpan.setSpan(
+                         Layout.Alignment.ALIGN_NORMAL,
+                         0,
+                         resources.getString(R.string.guessOneText).length - 1,
+                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
 
-                    )
-                    guessOneSpan.setSpan(
-                        Layout.Alignment.ALIGN_OPPOSITE,
-                        resources.getString(R.string.guessOneText).length,
-                        guess1.text.length,
-                        Spannable.SPAN_EXCLUSIVE_INCLUSIVE
+                     )
+                     guessOneSpan.setSpan(
+                         Layout.Alignment.ALIGN_OPPOSITE,
+                         resources.getString(R.string.guessOneText).length,
+                         guess1.text.length,
+                         Spannable.SPAN_EXCLUSIVE_INCLUSIVE
 
-                    )*/
+                     )*/
+                    guess1Label.visibility = VISIBLE
                     guess1.visibility = VISIBLE
+                    guess1CheckLabel.visibility = VISIBLE
                     guess1Check.visibility = VISIBLE
 
                 } else if (numberOfGuesses == 2) {
                     guess2.text = guess2.text.toString().plus(userGuessEntered)
                     guess2Check.text =
                         guess2Check.text.toString().plus(checkGuess(userGuessEntered))
+
+                    guess2Label.visibility = VISIBLE
                     guess2.visibility = VISIBLE
+                    guess2CheckLabel.visibility = VISIBLE
                     guess2Check.visibility = VISIBLE
                 } else {
                     guess3.text = guess3.text.toString().plus(userGuessEntered)
                     guess3Check.text =
                         guess3Check.text.toString().plus(checkGuess(userGuessEntered))
+                    guess3Label.visibility = VISIBLE
                     guess3.visibility = VISIBLE
+                    guess3CheckLabel.visibility = VISIBLE
                     guess3Check.visibility = VISIBLE
+
                     // Last guess used up, show correct word
                     correctWord.visibility = VISIBLE
                     guessBtn.visibility = INVISIBLE
@@ -128,19 +142,29 @@ class MainActivity : AppCompatActivity() {
             correctWord.text = wordToGuess
             Log.v("correct", wordToGuess)
 
+            guess1Label.visibility = INVISIBLE
             guess1.visibility = INVISIBLE
-            guess1.text = resources.getString(R.string.guessOneText)
-            guess2.visibility = INVISIBLE
-            guess2.text = resources.getString(R.string.guessTwoText)
-            guess3.visibility = INVISIBLE
-            guess3.text = resources.getString(R.string.guessThreeText)
+            guess1.text = ""
 
+            guess2Label.visibility = INVISIBLE
+            guess2.visibility = INVISIBLE
+            guess2.text = ""
+
+            guess3Label.visibility = INVISIBLE
+            guess3.visibility = INVISIBLE
+            guess3.text = ""
+
+            guess1CheckLabel.visibility = INVISIBLE
             guess1Check.visibility = INVISIBLE
-            guess1Check.text = resources.getString(R.string.guessOneCheckText)
+            guess1Check.text = ""
+
+            guess2CheckLabel.visibility = INVISIBLE
             guess2Check.visibility = INVISIBLE
-            guess2Check.text = resources.getString(R.string.guessTwoCheckText)
+            guess2Check.text = ""
+
+            guess3CheckLabel.visibility = INVISIBLE
             guess3Check.visibility = INVISIBLE
-            guess3Check.text = resources.getString(R.string.guessThreeCheckText)
+            guess3Check.text = ""
 
             guessBtn.visibility = VISIBLE
             resetBtn.visibility = INVISIBLE
