@@ -45,10 +45,10 @@ class MainActivity : AppCompatActivity() {
         // Wait for user to guess with guess button click listener
         guessBtn.setOnClickListener {
             val userGuessEntered = currentGuess.text.toString()
-            val guessOneSpan: SpannableString
-            val guessOneCheckSpan: SpannableString
-            var guessTwoCheckSpan: SpannableString = SpannableString(guess2Check.text)
-            var guessThreeCheckSpan: SpannableString = SpannableString(guess3Check.text)
+           // val guessOneSpan: SpannableString
+           // val guessOneCheckSpan: SpannableString
+           // var guessTwoCheckSpan: SpannableString = SpannableString(guess2Check.text)
+           // var guessThreeCheckSpan: SpannableString = SpannableString(guess3Check.text)
 
             // Check if we have enough guesses to process
             if (numberOfGuesses > 0) {
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                     guess1Check.text =
                         guess1Check.text.toString().plus(checkGuess(userGuessEntered))
 
-                    guessOneSpan = SpannableString(
+                   /* guessOneSpan = SpannableString(
                         guess1.text.toString().plus(userGuessEntered)
                     )
                     guessOneSpan.setSpan(
@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                         guess1.text.length,
                         Spannable.SPAN_EXCLUSIVE_INCLUSIVE
 
-                    )
+                    )*/
                     guess1.visibility = VISIBLE
                     guess1Check.visibility = VISIBLE
 
